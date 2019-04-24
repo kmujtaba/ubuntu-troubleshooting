@@ -1,0 +1,23 @@
+$ cd /var/crash
+$ ls
+{  eg. _opt_google_chrome_chrome.1000.crash
+_usr_lib_chromium-browser_chromium-browser.1000.crash
+_usr_sbin_ulatencyd.0.crash
+_usr_share_apport_apport-gtk.1000.crash  }
+Solution:- Just remove the crash report files
+ $ sudo rm /var/crash/*
+ 
+ Turn off apport
+ After removing the old crash reports,
+ if you still get the same error message, 
+ then you can completely turn off apport to get rid. Edit the configuration file at /etc/default/apport.
+ 
+ $ gksudo gedit /etc/default/apport
+ 
+{ # set this to 0 to disable apport, or to 1 to enable it
+# you can temporarily override this with
+# sudo service apport start force_start=1
+enabled=1 }
+ 
+ $ enabled=0
+ $ sudo restart apport
